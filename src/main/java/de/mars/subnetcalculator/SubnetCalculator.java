@@ -1,16 +1,19 @@
 package de.mars.subnetcalculator;
 
 /**
- * Diese Klasse enthält die Logik zur Berechnung von Subnetzen.
+ * Diese Klasse enthält die zentrale Logik zur Berechnung von Subnetzen.
+ * Sie unterstützt sowohl die Analyse eines einzelnen Subnetzes als auch die
+ * automatische Aufteilung eines Netzwerks in mehrere Subnetze.
  */
 public class SubnetCalculator {
 
     /**
-     * Berechnet ein einzelnes Subnetz und gibt die Informationen als Text zurück.
+     * Berechnet die Netzadresse, Broadcast-Adresse, ersten und letzten Host sowie
+     * weitere relevante Informationen für ein einzelnes Subnetz.
      *
-     * @param ip           IP-Adresse als String
-     * @param prefixLength Länge des Präfixes (z. B. 24)
-     * @return Ergebnistext zur Anzeige
+     * @param ip           Die IP-Adresse im Format "x.x.x.x"
+     * @param prefixLength Die Präfixlänge (z. B. 24)
+     * @return Ein formatierter Ergebnistext mit allen berechneten Subnetzinformationen
      */
     public static String calculateSingleSubnet(String ip, int prefixLength) {
         int ipInt = IpUtils.ipToInt(ip);
@@ -31,12 +34,13 @@ public class SubnetCalculator {
     }
 
     /**
-     * Berechnet mehrere Subnetze und gibt die Informationen als Text zurück.
+     * Teilt ein gegebenes Netzwerk in mehrere Subnetze auf und berechnet für jedes Subnetz
+     * die Netzadresse, Broadcast-Adresse sowie den Hostbereich.
      *
-     * @param ip           IP-Adresse als String
-     * @param prefixLength Länge des Präfixes (z. B. 24)
-     * @param subnetCount  Anzahl der gewünschten Subnetze
-     * @return Ergebnistext zur Anzeige
+     * @param ip           Die Ausgangs-IP-Adresse im Format "x.x.x.x"
+     * @param prefixLength Die ursprüngliche Präfixlänge (z. B. 24)
+     * @param subnetCount  Die gewünschte Anzahl an Subnetzen
+     * @return Ein formatierter Text mit Informationen zu den berechneten Subnetzen
      */
     public static String calculateMultipleSubnets(String ip, int prefixLength, int subnetCount) {
         int additionalBits = (int) Math.ceil(Math.log(subnetCount) / Math.log(2));

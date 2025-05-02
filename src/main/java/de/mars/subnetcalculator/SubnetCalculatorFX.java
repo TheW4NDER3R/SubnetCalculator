@@ -12,8 +12,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
- * Dies ist die Hauptklasse der Anwendung. Sie erstellt die grafische Benutzeroberfläche
- * für den Subnetzrechner mit JavaFX.
+ * Hauptklasse der JavaFX-Anwendung. Diese Klasse initialisiert die grafische Benutzeroberfläche
+ * für den Subnetzrechner, inklusive Eingabefelder, Ergebnisanzeige, Theme-Umschalter
+ * und Speicherung von Berechnungen im JSON-Format.
  */
 public class SubnetCalculatorFX extends Application {
 
@@ -21,9 +22,13 @@ public class SubnetCalculatorFX extends Application {
     private TextField prefixField;
     private TextField subnetCountField;
     private TextArea resultArea;
+    /** Die Szene der Anwendung, wird für Theme-Umschaltung verwendet. */
+    private Scene scene;
 
     /**
-     * Startet die JavaFX-Anwendung und erstellt das Hauptfenster.
+     * Startet die JavaFX-Anwendung und erstellt das Hauptfenster mit Eingabefeldern,
+     * Ergebnisanzeige, einem Button zur Subnetzberechnung, einem Button zum Laden vorheriger
+     * Berechnungen sowie einem ToggleButton für den Dark-/Light-Mode.
      *
      * @param primaryStage Die Hauptbühne (Fenster) der Anwendung.
      */
@@ -34,7 +39,6 @@ public class SubnetCalculatorFX extends Application {
         VBox root = new VBox(15);
         root.setPadding(new Insets(20));
         root.setAlignment(Pos.CENTER);
-        root.setStyle("-fx-background-color: #f4f7fa;");
 
         Label titleLabel = new Label("Subnet Calculator");
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
@@ -72,13 +76,30 @@ public class SubnetCalculatorFX extends Application {
             resultArea.setText(JsonStorage.loadAllCalculations());
         });
 
-        HBox buttonBox = new HBox(10, calculateBtn, loadBtn);
+        ToggleButton themeToggle = new ToggleButton("🌙 Dark Mode");
+        themeToggle.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+        themeToggle.setStyle("-fx-background-radius: 6;");
+
+        themeToggle.setOnAction(e -> {
+            scene.getStylesheets().clear();
+            if (themeToggle.isSelected()) {
+                scene.getStylesheets().add(getClass().getResource("/dark-style.css").toExternalForm());
+                themeToggle.setText("☀️ Light Mode");
+            } else {
+                scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+                themeToggle.setText("🌙 Dark Mode");
+            }
+        });
+
+        HBox buttonBox = new HBox(10, calculateBtn, loadBtn, themeToggle);
         buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setPadding(new Insets(10));
 
         resultArea = new TextArea();
         resultArea.setEditable(false);
         resultArea.setFont(Font.font("Consolas", 13));
-        resultArea.setPrefHeight(250);
+        resultArea.setPrefHeight(300);
+        resultArea.setWrapText(true);
 
         inputGrid.add(ipLabel, 0, 0);
         inputGrid.add(ipField, 1, 0);
@@ -92,8 +113,11 @@ public class SubnetCalculatorFX extends Application {
         // Wenn der Button geklickt wird, starte die Berechnung
         calculateBtn.setOnAction(e -> calculateSubnet());
 
-        Scene scene = new Scene(root, 550, 550);
+        scene = new Scene(root, 550, 550);
         primaryStage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("/dark-style.css").toExternalForm());
+        themeToggle.setSelected(true);
+        themeToggle.setText("☀️ Light Mode");
         primaryStage.show();
     }
 

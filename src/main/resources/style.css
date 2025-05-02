@@ -1,0 +1,29 @@
+.root {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #fdfbfb, #ebedee);
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.label {
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+}
+
+.button {
+    -fx-background-radius: 6;
+    -fx-padding: 8 15;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.text-field {
+    -fx-background-radius: 4;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4;
+}
+
+.text-area {
+    -fx-background-radius: 6;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 6;
+    -fx-padding: 10;
+}

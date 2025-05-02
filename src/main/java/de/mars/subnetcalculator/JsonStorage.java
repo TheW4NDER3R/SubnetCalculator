@@ -8,7 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * Diese Klasse verwaltet das Speichern von Subnetzberechnungen in einer JSON-Datei.
+ * Diese Klasse bietet Methoden zum Speichern und Laden von Subnetzberechnungen
+ * in einer lokalen JSON-Datei namens "calculations.json".
  */
 public class JsonStorage {
 
@@ -16,11 +17,12 @@ public class JsonStorage {
 
     /**
      * Speichert eine neue Subnetzberechnung in der JSON-Datei.
+     * Wenn die Datei bereits existiert, wird der neue Eintrag angehängt.
      *
-     * @param inputIp       Die eingegebene IP-Adresse
-     * @param prefixLength  Die eingegebene Präfixlänge
-     * @param subnetCount   Die Anzahl der Subnetze (0 bei Einzelberechnung)
-     * @param resultText    Der Ergebnistext
+     * @param inputIp      Die eingegebene IP-Adresse
+     * @param prefixLength Die eingegebene Präfixlänge (z.B. 24)
+     * @param subnetCount  Die Anzahl der Subnetze (0 bei Einzelberechnung)
+     * @param resultText   Der berechnete Ergebnistext zur Anzeige
      */
     public static void saveCalculation(String inputIp, int prefixLength, int subnetCount, String resultText) {
         try {
@@ -51,9 +53,11 @@ public class JsonStorage {
         }
     }
     /**
-     * Lädt alle gespeicherten Berechnungen aus der JSON-Datei.
+     * Lädt alle gespeicherten Subnetzberechnungen aus der JSON-Datei
+     * und gibt sie als formatierten Text zur Anzeige zurück.
      *
-     * @return Zusammengefasste Ergebnisse als String zur Anzeige.
+     * @return Zusammengefasste Ergebnisse als formatierter String,
+     *         oder eine Fehlermeldung, falls die Datei nicht existiert oder nicht gelesen werden kann.
      */
     public static String loadAllCalculations() {
         StringBuilder sb = new StringBuilder();
