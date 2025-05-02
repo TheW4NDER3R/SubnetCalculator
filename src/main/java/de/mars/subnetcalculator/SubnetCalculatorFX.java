@@ -65,6 +65,16 @@ public class SubnetCalculatorFX extends Application {
         calculateBtn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
         calculateBtn.setDefaultButton(true);
 
+        Button loadBtn = new Button("Berechnungen laden");
+        loadBtn.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        loadBtn.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
+        loadBtn.setOnAction(e -> {
+            resultArea.setText(JsonStorage.loadAllCalculations());
+        });
+
+        HBox buttonBox = new HBox(10, calculateBtn, loadBtn);
+        buttonBox.setAlignment(Pos.CENTER);
+
         resultArea = new TextArea();
         resultArea.setEditable(false);
         resultArea.setFont(Font.font("Consolas", 13));
@@ -77,7 +87,7 @@ public class SubnetCalculatorFX extends Application {
         inputGrid.add(subnetCountLabel, 0, 2);
         inputGrid.add(subnetCountField, 1, 2);
 
-        root.getChildren().addAll(titleLabel, inputGrid, calculateBtn, resultArea);
+        root.getChildren().addAll(titleLabel, inputGrid, buttonBox, resultArea);
 
         // Wenn der Button geklickt wird, starte die Berechnung
         calculateBtn.setOnAction(e -> calculateSubnet());
@@ -114,11 +124,15 @@ public class SubnetCalculatorFX extends Application {
                 return;
             }
 
+            String result;
             if (subnetCount > 0) {
-                resultArea.setText(SubnetCalculator.calculateMultipleSubnets(ip, prefixLength, subnetCount));
+                result = SubnetCalculator.calculateMultipleSubnets(ip, prefixLength, subnetCount);
             } else {
-                resultArea.setText(SubnetCalculator.calculateSingleSubnet(ip, prefixLength));
+                result = SubnetCalculator.calculateSingleSubnet(ip, prefixLength);
             }
+            resultArea.setText(result);
+            JsonStorage.saveCalculation(ip, prefixLength, subnetCount, result);
+
 
         } catch (Exception ex) {
             resultArea.setText("Fehlerhafte Eingabe!");
