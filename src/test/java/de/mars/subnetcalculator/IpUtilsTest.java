@@ -4,13 +4,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Diese Testklasse prüft die Methoden der Hilfsklasse IpUtils.
+ * Diese Testklasse prüft die Funktionalität der statischen Methoden der Hilfsklasse {@link IpUtils}.
+ * Dabei werden Konvertierungen von IP-Adressen sowie die Subnetzmaskenerzeugung getestet.
  */
 public class IpUtilsTest {
 
     /**
-     * Testet, ob eine IP-Adresse korrekt in eine Ganzzahl umgewandelt
-     * und zurückgewandelt wird.
+     * Testet die Umwandlung einer IP-Adresse in eine Ganzzahl und die Rückkonvertierung.
+     * Erwartet, dass das Ergebnis der ursprünglichen IP-Adresse entspricht.
      */
     @Test
     public void testIpToIntAndBack() {
@@ -21,7 +22,7 @@ public class IpUtilsTest {
     }
 
     /**
-     * Testet die Erstellung einer Subnetzmaske aus einem Präfix.
+     * Testet die korrekte Erzeugung einer Subnetzmaske aus einer gegebenen Präfixlänge.
      */
     @Test
     public void testPrefixLengthToMask() {
@@ -30,7 +31,7 @@ public class IpUtilsTest {
     }
 
     /**
-     * Testet das Extrahieren von Präfixzahlen aus einem String.
+     * Testet das Extrahieren von Präfixlängen aus verschiedenen Stringformaten.
      */
     @Test
     public void testExtractPrefixLength() {

@@ -46,7 +46,7 @@ public class IpUtils {
     }
 
     /**
-     * Extrahiert die Präfixlänge (z. B. 24) aus einem Eingabestring wie "/24" oder "24".
+     * Extrahiert die Präfixlänge (z.B. 24) aus einem Eingabestring wie "/24" oder "24".
      *
      * @param input Der Eingabestring, der eine Zahl enthält
      * @return Die extrahierte Präfixlänge als int

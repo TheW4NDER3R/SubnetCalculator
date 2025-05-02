@@ -4,16 +4,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Diese Testklasse überprüft die Methoden zur Subnetzberechnung
- * in der Klasse SubnetCalculator.
+ * Diese Testklasse überprüft die statischen Methoden der Klasse {@link SubnetCalculator},
+ * insbesondere die Ausgabeinhalte bei der Berechnung einzelner oder mehrerer Subnetze.
  */
 public class SubnetCalculatorTest {
 
     /**
-     * Testet, ob die Ausgabe der Methode calculateSingleSubnet()
-     * wichtige Begriffe wie "Netzadresse", "Broadcast" und "CIDR-Notation"
-     * enthält. Damit wird sichergestellt, dass die grundlegenden Informationen
-     * eines Subnetzes angezeigt werden.
+     * Testet, ob die Methode {@link SubnetCalculator#calculateSingleSubnet(String, int)}
+     * grundlegende Informationen wie "Netzadresse", "Broadcast" und "CIDR-Notation"
+     * korrekt in der Ausgabe enthält.
      */
     @Test
     public void testCalculateSingleSubnetIncludesExpectedStrings() {
@@ -24,9 +23,9 @@ public class SubnetCalculatorTest {
     }
 
     /**
-     * Testet, ob die Methode calculateMultipleSubnets() genau so viele Subnetze
-     * berechnet, wie im Parameter übergeben wurden (in diesem Fall 4).
-     * Es wird gezählt, wie oft das Wort "Subnetz" in der Ausgabe vorkommt.
+     * Testet, ob die Methode {@link SubnetCalculator#calculateMultipleSubnets(String, int, int)}
+     * exakt die erwartete Anzahl an Subnetzen generiert.
+     * Es wird gezählt, wie oft der Begriff "Subnetz" in der Ausgabe vorkommt.
      */
     @Test
     public void testCalculateMultipleSubnetsCount() {

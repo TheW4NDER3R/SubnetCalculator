@@ -12,7 +12,7 @@ public class SubnetCalculator {
      * weitere relevante Informationen für ein einzelnes Subnetz.
      *
      * @param ip           Die IP-Adresse im Format "x.x.x.x"
-     * @param prefixLength Die Präfixlänge (z. B. 24)
+     * @param prefixLength Die Präfixlänge (z.B. 24)
      * @return Ein formatierter Ergebnistext mit allen berechneten Subnetzinformationen
      */
     public static String calculateSingleSubnet(String ip, int prefixLength) {
@@ -38,7 +38,7 @@ public class SubnetCalculator {
      * die Netzadresse, Broadcast-Adresse sowie den Hostbereich.
      *
      * @param ip           Die Ausgangs-IP-Adresse im Format "x.x.x.x"
-     * @param prefixLength Die ursprüngliche Präfixlänge (z. B. 24)
+     * @param prefixLength Die ursprüngliche Präfixlänge (z.B. 24)
      * @param subnetCount  Die gewünschte Anzahl an Subnetzen
      * @return Ein formatierter Text mit Informationen zu den berechneten Subnetzen
      */
